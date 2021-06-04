@@ -1,7 +1,6 @@
 # Zmeow
-Very simple replacement for `zcat` built only to do one thing: read a compressed file and output its uncompressed contents to STDOUT
+Very simple replacement for `zcat` built only to do one thing: read a compressed file and output its uncompressed contents to STDOUT. All it's really doing is leveraging the performance of [flate2](https://github.com/rust-lang/flate2-rs) and [miniz_oxide](https://github.com/Frommi/miniz_oxide)
 
-Given that it's aims are so simplistic, the main criteria for the design is to do so as fast as possible.
 
 ## Performance
 On my computer (AMD Ryzen 9 3900X with 64GB RAM, high throughput NVME disks), I get about 420 MB/s throughput reading a 1.2MB gzipped file. `zcat` yields about 240 MB/s
