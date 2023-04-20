@@ -1,9 +1,9 @@
-use flate2::bufread::GzDecoder;
+use flate2::bufread::{MultiGzDecoder};
 use std::fs::File;
 use std::io::BufReader;
 use std::{env, io};
 
-fn main() -> Result<(), std::io::Error> {
+fn main() -> Result<(), io::Error> {
     let args: Vec<String> = env::args().collect();
     let filename = &args[1];
     let mut stdout = io::stdout();
@@ -14,8 +14,8 @@ fn main() -> Result<(), std::io::Error> {
     Ok(())
 }
 
-fn open_buffered_gzip(filename: &str) -> Result<GzDecoder<BufReader<File>>, std::io::Error> {
+fn open_buffered_gzip(filename: &str) -> Result<MultiGzDecoder<BufReader<File>>, io::Error> {
     let f = File::open(filename)?;
     let buf_reader = BufReader::new(f);
-    Ok(GzDecoder::new(buf_reader))
+    Ok(MultiGzDecoder::new(buf_reader))
 }
